@@ -30,18 +30,6 @@ Notes are stored under a single localStorage key:
 If you want to reset the app, clear this key in your browser devtools:
 **Application → Local Storage → delete `notes.app.v1`**.
 
-## Theme (Light/Dark)
-
-The app supports both light and dark themes:
-
-- **Default**: Light theme
-- **Toggle**: Use the theme button (sun/moon icon) in the header to switch between themes
-- **Persistence**: Your theme preference is saved to localStorage under the key `ui.theme`
-- **Auto-detection**: On first visit, the app checks your browser's `prefers-color-scheme` setting and uses that if available, otherwise defaults to light
-- **Accessibility**: Dark mode colors are designed to meet WCAG AA contrast requirements
-
-All components automatically adapt to the selected theme using CSS variables.
-
 ## Running
 
 From this folder:

@@ -1,10 +1,10 @@
 import React from "react";
 
 // PUBLIC_INTERFACE
-export default function Header({ onNewNote, isMobile, theme, onThemeToggle }) {
+export default function Header({ onNewNote, isMobile }) {
   /**
-   * App header with primary action and theme toggle.
-   * @param {{onNewNote: () => void, isMobile: boolean, theme: 'light' | 'dark', onThemeToggle: () => void}} props
+   * App header with primary action.
+   * @param {{onNewNote: () => void, isMobile: boolean}} props
    */
   return (
     <header className="header" role="banner">
@@ -21,25 +21,6 @@ export default function Header({ onNewNote, isMobile, theme, onThemeToggle }) {
       </div>
 
       <div className="header__right">
-        <button
-          type="button"
-          className="btn btn-theme"
-          onClick={onThemeToggle}
-          aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-          title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-        >
-          {theme === "light" ? (
-            <>
-              <span aria-hidden="true">🌙</span>
-              {!isMobile && <span>Dark</span>}
-            </>
-          ) : (
-            <>
-              <span aria-hidden="true">☀️</span>
-              {!isMobile && <span>Light</span>}
-            </>
-          )}
-        </button>
         <button
           type="button"
           className="btn btn-primary"
