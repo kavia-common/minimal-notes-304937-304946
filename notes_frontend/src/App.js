@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar";
 import NoteList from "./components/NoteList";
 import Editor from "./components/Editor";
 import { deleteNote, getNotes, saveNotes, upsertNote } from "./lib/storage";
+import { getInitialTheme, setTheme, toggleTheme } from "./lib/theme";
 
 /**
  * @param {string} q
@@ -55,6 +56,12 @@ export default function App() {
   const [mode, setMode] = useState(() => (getNotes().length ? "edit" : "none")); // "new" | "edit" | "none"
   const [search, setSearch] = useState("");
   const [editorDirty, setEditorDirty] = useState(false);
+  const [theme, setThemeState] = useState(() => getInitialTheme());
+
+  // Apply theme on mount and when it changes
+  useEffect(() => {
+    setTheme(theme);
+  }, [theme]);
 
   // Keep in sync with localStorage whenever notes change.
   useEffect(() => {
@@ -148,9 +155,13 @@ export default function App() {
     [notes]
   );
 
+  const handleThemeToggle = useCallback(() => {
+    setThemeState((current) => toggleTheme(current));
+  }, []);
+
   return (
     <div className="app">
-      <Header onNewNote={handleNew} isMobile={isMobile} />
+      <Header onNewNote={handleNew} isMobile={isMobile} theme={theme} onThemeToggle={handleThemeToggle} />
 
       <main className="shell" aria-label="Notes app main content">
         <aside className="pane pane--list" aria-label="Notes list panel">
